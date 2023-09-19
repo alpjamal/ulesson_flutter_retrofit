@@ -34,7 +34,7 @@ class _ApiRepo implements ApiRepo {
     )
             .compose(
               _dio.options,
-              'posts',
+              '/posts',
               queryParameters: queryParameters,
               data: _data,
             )

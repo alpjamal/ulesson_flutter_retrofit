@@ -8,6 +8,6 @@ part 'repo.g.dart';
 abstract class ApiRepo {
   factory ApiRepo(Dio dio) = _ApiRepo;
 
-  @GET('posts')
+  @GET('/posts')
   Future<List<PostModel>> getPosts();
 }
