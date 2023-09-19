@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:ulesson_flutter_retrofit/models/post_model.dart';
-import 'package:ulesson_flutter_retrofit/repository/repo.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -23,12 +20,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   FutureBuilder _body() {
-    final apiRepo = ApiRepo(Dio(BaseOptions(contentType: 'application/json')));
     return FutureBuilder(
-        future: apiRepo.getPosts(),
+        future: Future.delayed(const Duration(seconds: 1)),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            final List<PostModel> posts = snapshot.data ?? [];
+            final List posts = snapshot.data ?? [];
             if (posts.isEmpty) {
               return const Center(
                 child: Text('No Data'),
@@ -44,16 +40,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.black)),
-                  child: Column(
+                  child: const Column(
                     children: [
                       Text(
-                        posts[index].title!,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        'Title',
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       Text(
-                        posts[index].body!,
-                        style: const TextStyle(),
+                        'Description',
+                        style: TextStyle(),
                       ),
                     ],
                   ),
